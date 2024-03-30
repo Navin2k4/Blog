@@ -6,10 +6,11 @@ import SignIn from './pages/SignIn'
 import Projects from "./pages/Projects";
 import SignUp from "./pages/SignUp";
 import Header from "./components/Header";
+import Footer from "./components/FooterComp";
 const App = () => {
   return (
     <BrowserRouter>
-    <Header />
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/projects" element={<Projects />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };
