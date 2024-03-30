@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+// Creating Database Connection
 mongoose
     .connect(process.env.MONGO)
         .then(() => {
@@ -12,7 +13,7 @@ mongoose
             console.log(err);
         });
 
-
+// Creating the app
 const app = express();
 
 app.listen(3000,() =>{
