@@ -2,60 +2,46 @@ import { Alert, Label, Spinner, TextInput } from "flowbite-react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "flowbite-react";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { signInSuccess, signInStart, signInFailure } from "../redux/user/userSlice";
 
 const SignIn = () => {
+
   const [formData, setFormData] = useState({});
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [loading, setLoading] = useState(false);
+
+  const { loading, error: errorMessage } = useSelector(state => state.user);
+
+
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.password || !formData.email) {
-      return setErrorMessage("Please fill out all fields");
+    if (!formData.email || !formData.password) {
+      return dispatch(signInFailure('Please fill all the fields'));
     }
-
-    let data;
-
     try {
-      setLoading(true);
-      setErrorMessage(null);
-
-      const res = await fetch("api/auth/signin", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      dispatch(signInStart());
+      const res = await fetch('/api/auth/signin', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-
-      data = await res.json(); // Assign data within the try block
-
+      const data = await res.json();
       if (data.success === false) {
-        if (data.message.includes("duplicate key error collection")) {
-          if (data.message.includes("email_1")) {
-            setErrorMessage("Email is already in use");
-          } else if (data.message.includes("username_1")) {
-            setErrorMessage("Username is already taken");
-          }
-        } else {
-          setErrorMessage(data.message); // Handle other types of errors
-        }
-        setLoading(false);
-        return; // Return here to stop further execution if there's an error
+        dispatch(signInFailure(data.message));
       }
+
       if (res.ok) {
-        setLoading(false);
-        navigate("/");
+        dispatch(signInSuccess(data));
+        navigate('/');
       }
     } catch (error) {
-      // You can access data here if an error occurred during JSON parsing
-      if (data) {
-        setErrorMessage(data.message); // Handle other types of errors using data
-      } else {
-        setErrorMessage("An error occurred while signing up. Please try again later.");
-      }
-      setLoading(false);
+      dispatch(signInFailure(error.message));
     }
   };
 
@@ -121,8 +107,8 @@ const SignIn = () => {
           </form>
           <div className="flex gap-2 text-sm mt-5 justify-center">
             <span>Don`t have an account?</span>
-            <Link to="/sign-in" className="text-blue-500 underline">
-              Sign Un
+            <Link to="/sign-up" className="text-blue-500 underline">
+              Sign Up
             </Link>
           </div>
           {errorMessage && (
