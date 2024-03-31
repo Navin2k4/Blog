@@ -19,7 +19,6 @@ export const signup = async (req, res, next) => {
     )
 
     try {
-        // Saving the new user to the database
         await newUser.save();
         res.json('User saved successfully');
     } catch (error) {
@@ -34,20 +33,16 @@ export const signin = async (req, res, next) => {
     if (!email || !password || email === '' || password === '') {
         next(errorHandler(400, "All fields are required"));
     }
-
     try {
         const validUser = await User.findOne({ email });
                 const vaidPassword = await bcryptjs.compareSync(password, validUser.password);
 
         if (!validUser) {
-            return next(errorHandler(404, "User Not found")); // Should use credentials incorrect
+            return next(errorHandler(404, "User Not found"));
         }
         if (!vaidPassword) {
-            return next(errorHandler(400, "Password Invaid")); // Should use credentials incorrect
+            return next(errorHandler(400, "Password Invaid")); 
         }
-        // We should not gibe both differenty since knowing one of them may lead the leak of security information
-
-        // Authentication usif json webtoken 
         const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
 
         const { password:pass, ...rest} = validUser._doc;
