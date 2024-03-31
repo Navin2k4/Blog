@@ -37,7 +37,7 @@ export const signin = async (req, res, next) => {
 
     try {
         const validUser = await User.findOne({ email });
-        const vaidPassword = await bcryptjs.compareSync(password, validUser.password);
+                const vaidPassword = await bcryptjs.compareSync(password, validUser.password);
 
         if (!validUser) {
             return next(errorHandler(404, "User Not found")); // Should use credentials incorrect

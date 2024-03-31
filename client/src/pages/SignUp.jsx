@@ -80,8 +80,7 @@ const SignUp = () => {
             Welcome to InkWhisper Chronicles! Dive into captivating tales where
             imagination knows no bounds. Begin your unforgettable journey today.
             <span className="font-semibold text-red-600 leading-relaxed">
-              {" "}
-              Let your journey begin.
+              Sign up with your email and password
             </span>
           </p>
         </div>
