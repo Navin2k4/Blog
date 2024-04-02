@@ -9,7 +9,7 @@ const FooterComp = () => {
                 <div className="grid w-full justify-between sm:flex md:grid-cols-1">
                     <div className="mt-5 mr-5">
                         <Link to="/" className="self-center whitespace-nowrap text-l font-semibold dark:text-white sm:text-xl">
-                            <span className="px-2 py-1 bg-gradient-to-r from-blue-600 via-violet-600 to-red-600 rounded-lg text-white mr-1">InkWhisper
+                            <span className="px-2 py-1 bg-gradient-to-r from-blue-600 via-violet-600 to-red-600 rounded-lg text-white mr-1">SimpleOne
                             </span>Chronicles
                         </Link>
                     </div>

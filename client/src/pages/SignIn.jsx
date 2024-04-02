@@ -56,12 +56,12 @@ const SignIn = () => {
             className="tracking-widest text-4xl font-bold dark:text-white leading-normal"
           >
             <span className="px-2 py-1  bg-gradient-to-r from-blue-600 via-violet-600 to-red-600 rounded-lg text-white mr-2 ">
-              InkWhisper
+              SimpleOne
             </span>
             <br /> Chronicles
           </Link>
           <p className="mt-5 text-l leading-relaxed ">
-            Welcome to InkWhisper Chronicles! Dive into captivating tales where
+            Welcome to SimpleOne Chronicles! Dive into captivating tales where
             imagination knows no bounds. Begin your unforgettable journey today.
             <span className="font-semibold text-red-600 leading-relaxed">
               {" "}Sign in with your email and password or with Google
@@ -69,7 +69,7 @@ const SignIn = () => {
           </p>
         </div>
 
-        <div className="flex-1 bg-violet-50 p-5 rounded-2xl shadow-lg ring-1 ring-slate-600/5 ">
+        <div className="flex-1 bg-violet-50 p-5 rounded-2xl shadow-lg ring-1 ring-slate-600/5  dark:bg-gray-700 ">
           <form onSubmit={handleSubmit} className="flex flex-col gap-3">
             <div>
               <Label value="Your Email" />
