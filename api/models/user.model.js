@@ -21,8 +21,12 @@ const userSchema = new mongoose.Schema(
             default:
                 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
         },
+        isAdmin: {
+            type: 'boolean',
+            default: false,
+        },
     },
-    { timestamps: true } // To save the time of creation and time of update
+    { timestamps: true } 
 );
 
 const User = mongoose.model('User', userSchema);

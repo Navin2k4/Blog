@@ -204,21 +204,22 @@ function DashProfile() {
                     <span onClick={handleSignout} className="cursor-pointer">Sign Out</span>
                 </div>
 
-                {updateUserSuccess &&
-                    <Alert color='success' className="mt-5">
+                {updateUserSuccess && (
+                    <Alert color='success' className='mt-5'>
                         {updateUserSuccess}
                     </Alert>
-                }
-                {updateUserError &&
-                    <Alert color='failure' className="mt-5">
+                )}
+                {updateUserError && (
+                    <Alert color='failure' className='mt-5'>
                         {updateUserError}
                     </Alert>
-                }
-                {error &&
-                    <Alert color='failure' className="mt-5">
+                )}
+                {error && (
+                    <Alert color='failure' className='mt-5'>
                         {error}
                     </Alert>
-                }
+                )}
+                
                 <Modal show={showModal} onClose={() => setshowModel(false)} popup size='md' >
                     <Modal.Header className="ml-2">Delete Account</Modal.Header>
                     <Modal.Body className="">
