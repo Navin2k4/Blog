@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
-import { Alert, Button, Modal, TextInput } from "flowbite-react";
+import { Alert, Button, Modal, TextInput} from "flowbite-react";
+import { Link } from 'react-router-dom';
 import { useSelector } from "react-redux"
 import { useEffect, useRef, useState } from "react";
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage'
@@ -21,7 +22,7 @@ import 'react-circular-progressbar/dist/styles.css'
 
 
 function DashProfile() {
-    const { currentUser , error } = useSelector((state) => state.user);
+    const { currentUser , error , loading } = useSelector((state) => state.user);
     const [imageFile, setImageFile] = useState(null);
     const [imageFileUrl, setImageFileUrl] = useState(null);
     const [imageFileUplodingProgress, setImageFileUplodingProgress] = useState(null);
@@ -162,7 +163,6 @@ function DashProfile() {
                 <div className="relative w-32 h-32 mb-4 self-center cursor-pointer shadow-lg overflow-hidden rounded-full" onClick={() => filePickerRef.current.click()}>
                     {imageFileUplodingProgress && (
                         <CircularProgressbar value={imageFileUplodingProgress || 0}
-                            // text={`${imageFileUplodingProgress}%`}
                             strokeWidth={5}
                             styles={{
                                 root: {
@@ -194,9 +194,23 @@ function DashProfile() {
                 <TextInput type='text' id="username" placeholder="Username" defaultValue={currentUser.username} onChange={handleChange} />
                 <TextInput type='email' id="email" placeholder="Email" defaultValue={currentUser.email} onChange={handleChange} />
                 <TextInput type='password' id="password" placeholder="password" onChange={handleChange} />
-                <Button type="submit" className="bg-gradient-to-r from-red-600 to-blue-600 " outline>
-                    Update
+                
+                <Button type="submit" className="bg-gradient-to-r from-blue-600 via-violet-600 to-red-600" outline disabled={loading || imageFileUploading}>
+                    {loading? "Loading...": "Update"}
                 </Button>
+
+                {
+                    currentUser.isAdmin && (
+                        <Link to={'/create-post'}>
+                            <Button 
+                                type='button'
+                                className="bg-gradient-to-r from-blue-600 via-violet-600 to-red-600 tracking-widest w-full" 
+                                >
+                                CREATE A POST
+                            </Button>
+                        </Link>
+                    )
+                }
 
 
                 <div className="text-red-500 flex justify-between mt-5">
@@ -219,7 +233,7 @@ function DashProfile() {
                         {error}
                     </Alert>
                 )}
-                
+
                 <Modal show={showModal} onClose={() => setshowModel(false)} popup size='md' >
                     <Modal.Header className="ml-2">Delete Account</Modal.Header>
                     <Modal.Body className="">
