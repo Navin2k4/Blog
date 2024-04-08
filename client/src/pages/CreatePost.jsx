@@ -1,12 +1,16 @@
 /* eslint-disable no-unused-vars */
 import { FileInput, Select, TextInput, Button, Alert } from 'flowbite-react';
 import { useState } from 'react';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import { useNavigate} from 'react-router-dom'
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import { app } from '../firebase';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css'
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+// React Geosuggest for selecting the location for posting
+// import Geosuggest from '@ubilabs/react-geosuggest';
+
 
 function CreatePost() {
 
@@ -14,6 +18,8 @@ function CreatePost() {
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
   const [imageUploadError, setImageUploadError] = useState(null);
   const [formData, setFormData] = useState({});
+  const [publishError, setPublishError] = useState(null);
+  const navigate = useNavigate();
 
   const handleUpdloadImage = async () => {
     try {
@@ -50,19 +56,69 @@ function CreatePost() {
       setImageUploadProgress(null);
     }
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch('api/post/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        setPublishError(data.message);
+        return;
+      }
+
+      if (res.ok) {
+        setPublishError(null);
+        navigate(`/post/${data.slug}`);
+      }
+
+    } catch (error) {
+      setPublishError('Something Went Wrong');
+    }
+  }
+
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen">
-      <h1 className="text-center text-xl my-7 font-semibold tracking-widest ">Create A Post</h1>
-      <form className="flex flex-col gap-4">
+      <h1 className="text-center text-2xl my-7 font-semibold tracking-widest ">Create A Request</h1>
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
-          <TextInput required type='text' placeholder='Title' id='title' className='flex-1 ' />
-          <Select>
-            <option value='uncatagorized'>Select a Category</option>
-            <option value='javascript'>JavaScript</option>
-            <option value='reactjs'>React JS</option>
-            <option value='nextjs'>Next JS</option>
+          <TextInput
+            required
+            type='text'
+            placeholder='Issue Title'
+            id='title'
+            className='flex-1'
+            onChange={(e) => {
+              setFormData({ ...formData, title: e.target.value });
+            }
+            }
+          />
+          <Select
+            onChange={(e) => {
+              setFormData({ ...formData, category: e.target.value });
+            }
+            }
+          >
+            <option value='uncategorized'>Select severity</option>
+            <option value='critical' className=''>Critical</option>
+            <option value='major' className=''>Major</option>
+            <option value='minor' className=''>Minor</option>
+
           </Select>
         </div>
+        {/* <Geosuggest
+          placeholder='Select the location'
+          onSuggestSelect={(suggest) => {
+            console.log(suggest);
+          }}          
+        /> */}
 
         <div className='flex flex-col gap-4 sm:flex-row items-center justify-between border-2 border-gray-500 rounded-xl p-3'>
           <FileInput
@@ -71,6 +127,7 @@ function CreatePost() {
             onChange={(e) => setFile(e.target.files[0])}
           />
           <p className='text-gray-400'>(Any image format) Max size: 5 MB</p>
+
 
           <Button
             type='button'
@@ -107,10 +164,22 @@ function CreatePost() {
 
         <ReactQuill
           theme="snow"
-          placeholder='Your Content goes here' className='h-72 mb-12'
-          required />
+          placeholder='Describe about the issue'
+          className='h-72 mb-12'
+          required
+          onChange={
+            (value) => {
+              setFormData({ ...formData, content: value });
+            }
+          }
+        />
+        <Button type='submit' className='bg-gradient-to-r from-blue-600 via-violet-600 to-red-600' >Publish Request</Button>
 
-        <Button type='submit' className='bg-gradient-to-r from-blue-600 via-violet-600 to-red-600' >Publish</Button>
+        {publishError && (
+          <Alert className='mt-5' color='failure'>
+            {publishError}
+          </Alert>
+        )}
 
       </form>
     </div>
