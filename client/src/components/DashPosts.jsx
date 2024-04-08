@@ -1,4 +1,4 @@
-import { Button, Table } from "flowbite-react";
+import { Table } from "flowbite-react";
 import { useEffect, useState } from "react"
 import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
@@ -27,6 +27,7 @@ const DashPosts = () => {
     if (currentUser.isAdmin) {
       fetchPosts();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser._id]);
 
   const handleShowmore = async () =>{
