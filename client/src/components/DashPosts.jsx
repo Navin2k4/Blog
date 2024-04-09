@@ -88,7 +88,7 @@ const DashPosts = () => {
             </Table.Head>
             {userPosts.map((post) => (
               // eslint-disable-next-line react/jsx-key
-              <Table.Body className="divide-y">
+              <Table.Body className="divide-y" key={post._id}>
                 <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
                   <Table.Cell>{new Date(post.updatedAt).toLocaleDateString()}</Table.Cell>
                   <Table.Cell>
@@ -137,7 +137,7 @@ const DashPosts = () => {
         <p>You have no Posts</p>
       )}
       <Modal show={showModal} onClose={() => setShowModal(false)} popup size='md' >
-        <Modal.Header className="ml-2">Delete Account</Modal.Header>
+        <Modal.Header className="ml-2">Delete Post</Modal.Header>
         <Modal.Body className="">
           <div className="text-center">
             <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 dark:text-gray-400 mb-4 mx-auto" />
