@@ -1,5 +1,3 @@
-import CallToAction from "../components/CallToAction"
-
 const Home = () => {
   return (
     <div className="bg-white">
