@@ -8,7 +8,11 @@ export default {
     'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        customGreen: 'rgb(73, 199, 172)',
+      },
+    },
   },
   plugins: [
     flowbitePlugin,
