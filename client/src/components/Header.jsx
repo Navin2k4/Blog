@@ -77,10 +77,17 @@ const Header = () => {
               <span className="block text-sm font-medium truncate">{currentUser.email}</span>
             </Dropdown.Header>
 
-            <Link
-              to={'/dashboard?tab=profile'}>
+            {currentUser.isAdmin &&
+              <Link to={'/dashboard?tab=dash'}>
+                <DropdownItem>Dashboard</DropdownItem>
+              </Link>
+            }
+            <DropdownDivider />
+
+            <Link to={'/dashboard?tab=profile'}>
               <DropdownItem>Profile</DropdownItem>
             </Link>
+
             <DropdownDivider />
             <DropdownItem onClick={handleSignout}>Sign Out</DropdownItem>
           </Dropdown>

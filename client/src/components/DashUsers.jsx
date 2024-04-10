@@ -59,7 +59,7 @@ const DashUsers = () => {
             );
             const data = await res.json();
             if (res.ok) {
-                setUsers((prev)=>prev.filter((user)=>user._id !== userIdToDelete));
+                setUsers((prev) => prev.filter((user) => user._id !== userIdToDelete));
                 setShowModal(false);
             } else {
                 console.log(data.message);
@@ -76,6 +76,7 @@ const DashUsers = () => {
                     <Table hoverable className="shadow-lg border-gray-400 ">
                         <Table.Head>
                             <Table.HeadCell>Date Created</Table.HeadCell>
+                            <Table.HeadCell>Date Updated</Table.HeadCell>
                             <Table.HeadCell>User Image</Table.HeadCell>
                             <Table.HeadCell>Username</Table.HeadCell>
                             <Table.HeadCell>Email</Table.HeadCell>
@@ -87,6 +88,7 @@ const DashUsers = () => {
                             <Table.Body className="divide-y" key={user._id}>
                                 <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
                                     <Table.Cell>{new Date(user.createdAt).toLocaleDateString()}</Table.Cell>
+                                    <Table.Cell>{new Date(user.updatedAt).toLocaleDateString()}</Table.Cell>
                                     <Table.Cell>
                                         <img
                                             src={user.profilePicture}

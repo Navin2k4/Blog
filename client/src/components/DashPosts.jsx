@@ -77,6 +77,7 @@ const DashPosts = () => {
         <>
           <Table hoverable className="shadow-lg border-gray-400 ">
             <Table.Head>
+              <Table.HeadCell>Date Created</Table.HeadCell>
               <Table.HeadCell>Date Updated</Table.HeadCell>
               <Table.HeadCell>Post Image</Table.HeadCell>
               <Table.HeadCell>Post Title</Table.HeadCell>
@@ -90,6 +91,7 @@ const DashPosts = () => {
               // eslint-disable-next-line react/jsx-key
               <Table.Body className="divide-y" key={post._id}>
                 <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                  <Table.Cell>{new Date(post.createdAt).toLocaleDateString()}</Table.Cell>
                   <Table.Cell>{new Date(post.updatedAt).toLocaleDateString()}</Table.Cell>
                   <Table.Cell>
                     <Link to={`/post/${post.slug}`}>

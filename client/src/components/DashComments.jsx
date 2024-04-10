@@ -75,6 +75,7 @@ const DashComments = () => {
                 <>
                     <Table hoverable className="shadow-lg border-gray-400 ">
                         <Table.Head>
+                            <Table.HeadCell>Date Created</Table.HeadCell>
                             <Table.HeadCell>Date Updated</Table.HeadCell>
                             <Table.HeadCell>Comment content</Table.HeadCell>
                             <Table.HeadCell>Number of Likes</Table.HeadCell>
@@ -86,6 +87,7 @@ const DashComments = () => {
                             // eslint-disable-next-line react/jsx-key
                             <Table.Body className="divide-y" key={comment._id}>
                                 <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                                    <Table.Cell>{new Date(comment.createdAt).toLocaleDateString()}</Table.Cell>
                                     <Table.Cell>{new Date(comment.updatedAt).toLocaleDateString()}</Table.Cell>
                                     <Table.Cell className>{comment.content}</Table.Cell>
                                     <Table.Cell>{comment.numberOfLikes}</Table.Cell>
