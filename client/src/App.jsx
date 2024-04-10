@@ -5,6 +5,7 @@ import About from './pages/About'
 import SignIn from './pages/SignIn'
 import Projects from "./pages/Projects";
 import SignUp from "./pages/SignUp";
+import Search from "./pages/Search";
 import Header from "./components/Header";
 import Footer from "./components/FooterComp";
 import PrivateRoute from "./components/PrivateRoute";
@@ -31,6 +32,7 @@ const App = () => {
         </Route>
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/post/:postSlug" element={<PostPage />} />
       </Routes>
