@@ -63,8 +63,8 @@ const DashboardComp = () => {
 
   return (
     <div className="p-3 md:mx-auto">
-      <div className="flex-wrap flex gap-4 justify-center">
-        <div className="flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md">
+      <div className="flex-wrap mt-5 flex gap-4 justify-center">
+        <div className="flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-lg shadow-md">
           <div className="flex justify-between">
             <div className="">
               <h3 className="text-gray-500 text-md uppercase mb-2">Total Users</h3>
@@ -80,7 +80,7 @@ const DashboardComp = () => {
         </div>
 
 
-        <div className="flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md">
+        <div className="flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-lg shadow-md">
           <div className="flex justify-between">
             <div className="">
               <h3 className="text-gray-500 text-md uppercase mb-2">Total Comments</h3>
@@ -96,7 +96,7 @@ const DashboardComp = () => {
         </div>
 
 
-        <div className="flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-md shadow-md">
+        <div className="flex flex-col p-3 dark:bg-slate-800 gap-4 md:w-72 w-full rounded-lg shadow-md">
           <div className="flex justify-between">
             <div className="">
               <h3 className="text-gray-500 text-md uppercase mb-2">Total Posts</h3>
@@ -112,8 +112,8 @@ const DashboardComp = () => {
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-4 py-3 mx-auto justify-center">
-        <div className="flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800">
+      <div className="mt-5 flex flex-wrap gap-6 py-3 mx-auto justify-center">
+        <div className="flex flex-col w-full md:w-auto shadow-md p-2 rounded-lg dark:bg-gray-800">
           <div className="flex justify-between p-3 text-sm font-semibold">
             <h1 className="text-center p-2">Recent Users</h1>
             <Button outline gradientDuoTone='purpleToPink'>
@@ -145,7 +145,7 @@ const DashboardComp = () => {
           </Table>
         </div>
 
-        <div className="flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800">
+        <div className="flex flex-col w-full md:w-auto shadow-md p-2 rounded-lg dark:bg-gray-800">
           <div className="flex justify-between p-3 text-sm font-semibold">
             <h1 className="text-center p-2">Recent Comments</h1>
             <Button outline gradientDuoTone='purpleToPink'>
@@ -172,7 +172,7 @@ const DashboardComp = () => {
               ))}
           </Table>
         </div>
-        <div className="flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800">
+        <div className="flex flex-col w-full md:w-auto shadow-md p-2 rounded-lg dark:bg-gray-800">
           <div className="flex justify-between p-3 text-sm font-semibold">
             <h1 className="text-center p-2">Recent Posts</h1>
             <Button outline gradientDuoTone='purpleToPink'>

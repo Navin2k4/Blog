@@ -84,7 +84,6 @@ const DashComments = () => {
                             <Table.HeadCell>Delete</Table.HeadCell>
                         </Table.Head>
                         {comments.map((comment) => (
-                            // eslint-disable-next-line react/jsx-key
                             <Table.Body className="divide-y" key={comment._id}>
                                 <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
                                     <Table.Cell>{new Date(comment.createdAt).toLocaleDateString()}</Table.Cell>
