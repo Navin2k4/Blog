@@ -1,51 +1,47 @@
+import { Link } from 'react-router-dom';
+import CallToAction from '../components/CallToAction';
+import PostCard from '../components/PostCard';
+import { useState, useEffect } from 'react';
 const Home = () => {
+
+  const [posts, setPosts] = useState();
+
+  useEffect(() => {
+    const fetchPost = async () => {
+      const res = await fetch(`api/post/getposts`);
+      const data = await res.json();
+      setPosts(data.posts);
+    };
+    fetchPost();
+  }, []);
+
   return (
-    <div className="bg-white">
+    <div>
+      <div className="flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto ">
+        <h1 className="text-3xl font-bold lg:text-6xl">Welcome to <span className="text-red-600">Simpleone</span> Chronicles</h1>
+        <p className="text-gray-500 text-xs lg:text-lg">Here you will find the various number of articles and many topics related to the blog content and tutorials and many more for the further purpose the blog will be developed to see the othe articles and content</p>
+        <Link to='/search' className='text-sm sm:text-sm text-teal-500 font-bold hover:underline'>View all post</Link>
+      </div>
+      <div className='p-4 bg-amber-100 dark:bg-slate-700 lg:px-40 md:px-20 px-3'>
+        <CallToAction />
+      </div>
 
-
-      <section className="py-40 dark:text-gray-200 dark:bg-[rgb(16,23,42)]  text-gray-700">
-        <div className="container mx-auto flex items-center justify-center">
-          <div className="max-w-lg text-center">
-            <h2 className="text-4xl font-bold mb-4">Welcome to SimpleOne Chronicles</h2>
-            <p className="text-lg">Discover insightful articles and stories that inspire.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Blog Posts */}
-      <section className="p-16">
-        <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-gray-800 mb-8">Featured Articles</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Sample Blog Post */}
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <img src="https://via.placeholder.com/500" alt="Blog Post" className="w-full h-40 object-cover" />
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-800 mb-2">Blog Post Title</h3>
-                <p className="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut suscipit odio quis lorem elementum, at lobortis lorem ultrices.</p>
-                <a href="#" className="text-blue-500 font-semibold mt-4 inline-block">Read More</a>
+      <div className='max-w-6xl mx-auto p-3 flex flex-col gap-8 py-7'>
+        {
+          posts && posts.length > 0 && (
+            <div className='flex flex-col gap-6 items-center justify-center'>
+              <h2 className='text-2xl font-semibold text-center'>Recent Posts</h2>
+              <div className='flex flex-wrap gap-4 justify-center items-center'>
+                {posts.map((post) => (
+                  <PostCard key={post._id} post={post} />
+                ))
+                }
               </div>
             </div>
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <img src="https://via.placeholder.com/500" alt="Blog Post" className="w-full h-40 object-cover" />
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-800 mb-2">Blog Post Title</h3>
-                <p className="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut suscipit odio quis lorem elementum, at lobortis lorem ultrices.</p>
-                <a href="#" className="text-blue-500 font-semibold mt-4 inline-block">Read More</a>
-              </div>
-            </div>
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <img src="https://via.placeholder.com/500" alt="Blog Post" className="w-full h-40 object-cover" />
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-800 mb-2">Blog Post Title</h3>
-                <p className="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut suscipit odio quis lorem elementum, at lobortis lorem ultrices.</p>
-                <a href="#" className="text-blue-500 font-semibold mt-4 inline-block">Read More</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
+          )
+        }
+        <Link to='/search' className='text-lg text-teal-500 hover:underline  text-center'> View all posts</Link>
+      </div>
     </div>
   )
 }
