@@ -63,14 +63,14 @@ const PostPage = () => {
                 </span>
             </div>
 
-            <div className="p-3 max-w-3xl mx-auto w-full post-content" dangerouslySetInnerHTML={{__html:post && post.content}}>
-                
+            <div className="p-3 max-w-3xl mx-auto w-full post-content" dangerouslySetInnerHTML={{ __html: post && post.content }}>
+
             </div>
 
             <div className="max-w-4xl mx-auto w-full">
                 <CallToAction />
             </div>
-            <CommentSection postId={post._id}/>
+            <CommentSection postId={post._id} />
         </main>
     )
 }
