@@ -26,7 +26,7 @@ const Home = () => {
           <Link to='/search' className='text-sm sm:text-sm text-green-400  font-bold hover:underline'>View all post</Link>
         </div>
         <div className=' max-h-2xl hidden lg:block'>
-          <img src='./public/mainimage.png' />
+          <img src='https://firebasestorage.googleapis.com/v0/b/blog-2fbac.appspot.com/o/Res%2Fmainimage.png?alt=media&token=2cf11585-4cea-4494-959e-ee1499ae81f4' />
         </div>
       </div>
       <div className='p-4 bg-green-300 dark:bg-slate-700 lg:px-28 lg:py-20 md:px-20 px-3'>
