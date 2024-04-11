@@ -91,7 +91,7 @@ const Search = () => {
         }
         if (res.ok) {
             const data = await res.json();
-            setPosts([...posts,...data.posts]);
+            setPosts([...posts, ...data.posts]);
             if (data.posts.length === 9) {
                 setShowMore(true);
             } else {
@@ -104,7 +104,7 @@ const Search = () => {
         <div className='flex flex-col md:flex-row'>
             <div className='p-7 border-b md:border-r md:min-h-screen border-gray-500'>
                 <form className='flex flex-col gap-8' onSubmit={handleSubmit} >
-                    <div className='flex   items-center gap-2'>
+                    <div className='flex items-center gap-2'>
                         <label className='whitespace-nowrap font-semibold'>
                             Search Term:
                         </label>
@@ -137,7 +137,7 @@ const Search = () => {
 
                         </Select>
                     </div>
-                    <Button type='submit' outline gradientDuoTone='purpleToPink'>
+                    <Button type='submit' outline className=' bg-custom-gradient'>
                         Apply Filters
                     </Button>
                 </form>

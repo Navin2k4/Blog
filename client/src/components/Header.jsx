@@ -17,7 +17,7 @@ const Header = () => {
 
   const { currentUser } = useSelector((state) => state.user);
   const { theme } = useSelector((state) => state.theme);
-  const [searchTerm,setsearchTerm] = useState('');
+  const [searchTerm, setsearchTerm] = useState('');
 
 
   const handleSignout = async () => {
@@ -36,18 +36,18 @@ const Header = () => {
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const searchTermFromUrl = urlParams.get('searchTerm');
-    if(searchTermFromUrl) {
+    if (searchTermFromUrl) {
       setsearchTerm(searchTermFromUrl);
     }
-  },[location.search]);
+  }, [location.search]);
 
-  const handleSubmit = (e) =>{
+  const handleSubmit = (e) => {
     e.preventDefault();
     const urlParams = new URLSearchParams(location.search);
-    urlParams.set('searchTerm',searchTerm);
+    urlParams.set('searchTerm', searchTerm);
     const searchQuery = urlParams.toString();
     navigate(`/search?${searchQuery}`);
   }
@@ -57,15 +57,14 @@ const Header = () => {
       <Link to="/" className="self-center whitespace-nowrap text-l font-semibold dark:text-white
       sm:text-xl">
         <span className="
-        px-2 py-1 bg-gradient-to-r 
-       from-blue-600 via-violet-600 to-red-600 rounded-lg text-white mr-1" >SimpleOne</span>Chronicles
+        px-3 py-1 bg-custom-gradient rounded-lg text-white mr-1" >Urban</span>Uplift
       </Link>
       <form onSubmit={handleSubmit}>
         <TextInput type="text" placeholder="Search"
           rightIcon={AiOutlineSearch}
           className="hidden lg:inline"
           value={searchTerm}
-          onChange={(e)=>setsearchTerm(e.target.value)}
+          onChange={(e) => setsearchTerm(e.target.value)}
         />
       </form>
       <Button className="w-12 h-10 lg:hidden" color="gray" pill>
@@ -96,6 +95,7 @@ const Header = () => {
             }
             className="p-2"
           >
+
             <Dropdown.Header>
               <span className="block text-sm">@{currentUser.username}</span>
               <span className="block text-sm font-medium truncate">{currentUser.email}</span>
@@ -117,7 +117,7 @@ const Header = () => {
           </Dropdown>
         ) : (
           <Link to="/sign-in" >
-            <Button gradientDuoTone="purpleToBlue" outline>
+            <Button className="bg-custom-gradient" outline>
               Sign In
             </Button>
           </Link>
@@ -135,7 +135,7 @@ const Header = () => {
           <Link to='/about'>About</Link>
         </Navbar.Link>
         <Navbar.Link active={path === "/projects"} as={'div'}>
-          <Link to='/projects'>Projects</Link>
+          <Link to='/projects'>Recents</Link>
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>

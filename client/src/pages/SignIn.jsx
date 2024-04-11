@@ -55,17 +55,13 @@ const SignIn = () => {
             to="/"
             className="tracking-widest text-4xl font-bold dark:text-white leading-normal"
           >
-            <span className="px-2 py-1  bg-gradient-to-r from-blue-600 via-violet-600 to-red-600 rounded-lg text-white mr-2 ">
-              SimpleOne
+            <span className="px-2 py-1  bg-custom-gradient rounded-lg text-white mr-2 ">
+              Urban
             </span>
-            <br /> Chronicles
+            Uplift
           </Link>
           <p className="mt-5 text-l leading-relaxed ">
-            Welcome to SimpleOne Chronicles! Dive into captivating tales where
-            imagination knows no bounds. Begin your unforgettable journey today.
-            <span className="font-semibold text-red-600 leading-relaxed">
-              {" "}Sign in with your email and password or with Google
-            </span>
+            Sign in to Urban Uplift and continue your journey! Enter your email and password to access exclusive content, connect with fellow changemakers, and be part of the movement towards positive urban transformation.
           </p>
         </div>
 
@@ -77,7 +73,7 @@ const SignIn = () => {
                 type="email"
                 placeholder="name@company.com"
                 id="email"
-                className=""
+                className="mt-3"
                 onChange={handleChange}
               />
             </div>
@@ -87,12 +83,12 @@ const SignIn = () => {
                 type="password"
                 placeholder="********"
                 id="password"
-                className=""
+                className="mt-3"
                 onChange={handleChange}
               />
             </div>
             <Button
-              gradientDuoTone="purpleToPink"
+              className="bg-custom-gradient"
               type="submit"
               disabled={loading}
             >
@@ -110,7 +106,7 @@ const SignIn = () => {
           </form>
           <div className="flex gap-2 text-sm mt-5 justify-center">
             <span>Don`t have an account?</span>
-            <Link to="/sign-up" className="text-blue-500 underline">
+            <Link to="/sign-up" className="text-lime-300 underline">
               Sign Up
             </Link>
           </div>

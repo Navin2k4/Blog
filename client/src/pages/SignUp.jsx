@@ -72,29 +72,25 @@ const SignUp = () => {
             to="/"
             className="tracking-widest text-4xl font-bold dark:text-white leading-normal"
           >
-            <span className="px-2 py-1  bg-gradient-to-r from-blue-600 via-violet-600 to-red-600 rounded-lg text-white mr-2 ">
-              SimpleOne
+            <span className="px-2 py-1  bg-custom-gradient rounded-lg text-white mr-2 ">
+              Urban
             </span>
-            <br /> Chronicles
+            Uplift
           </Link>
           <p className="mt-5 text-l leading-relaxed ">
-            Welcome to SimpleOne Chronicles! Dive into captivating tales where
-            imagination knows no bounds. Begin your unforgettable journey today.
-            <span className="font-semibold text-red-600 leading-relaxed">
-              Sign up with your email and password
-            </span>
+            Join Urban Uplift now! Sign up with your email and password to access exclusive content and connect with changemakers driving positive change in urban communities.
           </p>
         </div>
 
-        <div className="flex-1 bg-violet-50 p-5 rounded-2xl shadow-lg ring-1 ring-slate-600/5 dark:bg-gray-700">
-          <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+        <div className="flex-1 bg-green-100 p-5 rounded-2xl shadow-lg ring-1 ring-slate-600/5 dark:bg-gray-700">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             <div>
               <Label value="Your Username" />
               <TextInput
                 type="text"
                 placeholder="Username"
                 id="username"
-                className=""
+                className="mt-3"
                 onChange={handleChange}
               />
             </div>
@@ -104,7 +100,7 @@ const SignUp = () => {
                 type="email"
                 placeholder="name@company.com"
                 id="email"
-                className=""
+                className="mt-3"
                 onChange={handleChange}
               />
             </div>
@@ -114,12 +110,12 @@ const SignUp = () => {
                 type="password"
                 placeholder="Password"
                 id="password"
-                className=""
+                className="mt-3"
                 onChange={handleChange}
               />
             </div>
             <Button
-              gradientDuoTone="purpleToPink"
+              className="bg-custom-gradient"
               type="submit"
               disabled={loading}
             >
@@ -136,7 +132,7 @@ const SignUp = () => {
           </form>
           <div className="flex gap-2 text-sm mt-5 justify-center">
             <span>Have an account?</span>
-            <Link to="/sign-in" className="text-blue-500 underline">
+            <Link to="/sign-in" className="text-lime-300 underline">
               Sign In
             </Link>
           </div>

@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage: theme=>({
+        'custom-gradient': 'linear-gradient(109.6deg, rgb(0, 204, 130) 11.2%, rgb(58, 181, 46) 91.7%)',
+      }),
       colors: {
         customGreen: 'rgb(73, 199, 172)',
       },

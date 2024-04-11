@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { FileInput, Select, TextInput, Button, Alert } from 'flowbite-react';
 import { useState } from 'react';
-import { useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import { app } from '../firebase';
 import { CircularProgressbar } from 'react-circular-progressbar';
@@ -131,7 +131,7 @@ function CreatePost() {
 
           <Button
             type='button'
-            className='bg-gradient-to-r from-red-600 to-blue-600'
+            className='bg-custom-gradient'
             size='sm'
             outline
             onClick={handleUpdloadImage}
@@ -173,7 +173,7 @@ function CreatePost() {
             }
           }
         />
-        <Button type='submit' className='bg-gradient-to-r from-blue-600 via-violet-600 to-red-600' >Publish Request</Button>
+        <Button type='submit' className='bg-custom-gradient' >Publish Request</Button>
 
         {publishError && (
           <Alert className='mt-5' color='failure'>

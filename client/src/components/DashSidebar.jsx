@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom"
 import { useEffect, useState } from "react";
 import { Sidebar } from "flowbite-react"
-import { HiAnnotation, HiArrowSmRight, HiChartPie, HiChat, HiDocumentAdd, HiDocumentText, HiOutlineUserGroup, HiUser } from "react-icons/hi"
+import { HiAnnotation, HiArrowSmRight, HiChartPie, HiChat, HiChatAlt, HiDocumentAdd, HiDocumentText, HiOutlineUserGroup, HiUser } from "react-icons/hi"
 import { signOutSuccess } from "../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -50,6 +50,17 @@ function DashSidebar() {
                             Profile
                         </Sidebar.Item>
                     </Link>
+                    {currentUser.isAdmin &&
+                        <Link to='/create-post'>
+                            <Sidebar.Item
+                                active={tab == 'create-post'}
+                                icon={HiChat}
+                                as='div'
+                            >
+                                Create a Post
+                            </Sidebar.Item>
+                        </Link>
+                    }
                     {
                         currentUser.isAdmin &&
                         <Link to='/dashboard?tab=dash'>
@@ -74,7 +85,8 @@ function DashSidebar() {
                                 Posts
                             </Sidebar.Item>
                         </Link>
-                    }
+                    }                    
+                    
 
                     {
                         currentUser.isAdmin &&
