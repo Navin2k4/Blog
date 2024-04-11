@@ -12,12 +12,6 @@ import path from 'path';
 
 dotenv.config();
 
-const port = process.env.PORT || 4000;
-
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})
-
 // Creating Database Connection
 mongoose
     .connect(process.env.MONGO)
@@ -34,9 +28,6 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
-
-
-
 
 // Creating test API
 app.use('/api/user', userRoutes);
@@ -59,3 +50,9 @@ app.use((err, req, res, next) => {
         message
     });
 });
+
+const port = process.env.PORT || 4000;
+
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+})
