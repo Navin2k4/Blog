@@ -14,7 +14,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-const UpdatePost =()=> {
+const UpdatePost = () => {
     const [file, setFile] = useState(null);
     const [imageUploadProgress, setImageUploadProgress] = useState(null);
     const [imageUploadError, setImageUploadError] = useState(null);
@@ -119,16 +119,14 @@ const UpdatePost =()=> {
                         placeholder='Issue Title'
                         id='title'
                         className='flex-1'
-                        onChange={(e) => {
-                            setFormData({ ...formData, title: e.target.value });
-                        }
+                        onChange={(e) =>
+                            setFormData({ ...formData, title: e.target.value })
                         }
                         value={formData.title}
                     />
                     <Select
-                        onChange={(e) => {
-                            setFormData({ ...formData, category: e.target.value });
-                        }
+                        onChange={(e) =>
+                            setFormData({ ...formData, category: e.target.value })
                         }
                         value={formData.category}
                     >
@@ -186,11 +184,9 @@ const UpdatePost =()=> {
                     placeholder='Describe about the issue'
                     className='h-72 mb-12'
                     required
-                    onChange={
-                        (value) => {
-                            setFormData({ ...formData, content: value });
-                        }
-                    }
+                    onChange={(value) => {
+                        setFormData({ ...formData, content: value });
+                    }}
                     value={formData.content}
 
                 />
