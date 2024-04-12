@@ -1,20 +1,20 @@
-/* eslint-disable no-unused-vars */
-import { FileInput, Select, TextInput, Button, Alert } from 'flowbite-react';
-import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom'
-import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
-import { app } from '../firebase';
-import { CircularProgressbar } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css'
+import { Alert, Button, FileInput, Select, TextInput } from 'flowbite-react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-// React Geosuggest for selecting the location for posting
-// import Geosuggest from '@ubilabs/react-geosuggest';
+import {
+    getDownloadURL,
+    getStorage,
+    ref,
+    uploadBytesResumable,
+} from 'firebase/storage';
+import { app } from '../firebase';
+import { useEffect, useState } from 'react';
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-
-function UpdatePost() {
-
+const UpdatePost =()=> {
     const [file, setFile] = useState(null);
     const [imageUploadProgress, setImageUploadProgress] = useState(null);
     const [imageUploadError, setImageUploadError] = useState(null);
@@ -40,9 +40,10 @@ function UpdatePost() {
                     setFormData(data.posts[0]);
                 }
             };
+
             fetchPost();
         } catch (error) {
-            console.log(error);
+            console.log(error.message);
         }
     }, [postId]);
 
@@ -138,13 +139,6 @@ function UpdatePost() {
 
                     </Select>
                 </div>
-                {/* <Geosuggest
-          placeholder='Select the location'
-          onSuggestSelect={(suggest) => {
-            console.log(suggest);
-          }}          
-        /> */}
-
                 <div className='flex flex-col gap-4 sm:flex-row items-center justify-between border-2 border-gray-500 rounded-xl p-3'>
                     <FileInput
                         type='file'
